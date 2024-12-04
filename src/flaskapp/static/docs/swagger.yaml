@@ -1,0 +1,485 @@
+openapi: 3.0.1
+info:
+  title: Pit Rivals API
+  description: Generated at 08/02/2024 14:31:26. This is the swagger 
+    ui based on the open api 3.0 specification of the Pit Rivals API
+  version: 1.0.0 created by the flask swagger generator.
+externalDocs:
+  description: Find out more about Swagger
+  url: 'http://swagger.io'
+servers:
+  - url: '/'
+paths:
+  '/api-rivals/v1/static/{filename}':
+    get:
+      tags:
+      - None
+      operationId: 'static'
+      parameters:
+      - in: path
+        name: filename
+        schema:
+          type: string
+        description: None
+        required: True
+  '/api-rivals/v1/test/test':
+    get:
+      tags:
+      - test
+      operationId: 'test'
+      responses:
+        '200':
+          $ref: '#/components/responses/test_response'
+  '/api-rivals/v1/test/test-post':
+    post:
+      tags:
+      - test
+      operationId: 'test_post'
+      responses:
+        '200':
+          $ref: '#/components/responses/test_post_response'
+  '/api-rivals/v1/users/register':
+    post:
+      tags:
+      - users
+      operationId: 'register'
+      requestBody:
+        $ref: '#/components/requestBodies/register_request_body' 
+      responses:
+        '200':
+          $ref: '#/components/responses/register_response'
+  '/api-rivals/v1/users/login':
+    post:
+      tags:
+      - users
+      operationId: 'login'
+      requestBody:
+        $ref: '#/components/requestBodies/login_request_body' 
+      responses:
+        '200':
+          $ref: '#/components/responses/login_response'
+  '/api-rivals/v1/users/account/{user_id}':
+    get:
+      tags:
+      - users
+      operationId: 'get_user'
+      parameters:
+      - in: path
+        name: user_id
+        schema:
+          type: integer
+        description: None
+        required: True
+      responses:
+        '200':
+          $ref: '#/components/responses/get_user_response'
+  '/api-rivals/v1/users/update-field/{user_id}':
+    put:
+      tags:
+      - users
+      operationId: 'update_field'
+      parameters:
+      - in: path
+        name: user_id
+        schema:
+          type: integer
+        description: None
+        required: True
+      requestBody:
+        $ref: '#/components/requestBodies/update_field_request_body' 
+      responses:
+        '200':
+          $ref: '#/components/responses/update_field_response'
+  '/api-rivals/v1/users/delete/{user_id}':
+    delete:
+      tags:
+      - users
+      operationId: 'delete_user'
+      parameters:
+      - in: path
+        name: user_id
+        schema:
+          type: integer
+        description: None
+        required: True
+      responses:
+        '200':
+          $ref: '#/components/responses/delete_user_response'
+  '/api-rivals/v1/stats/user-stats':
+    get:
+      tags:
+      - stats
+      operationId: 'get_user_stats'
+      parameters:
+      - in: query
+        name: user-id
+        schema:
+          type: integer
+        description: Filter by user id
+        required: False
+        allowReserved: False
+      - in: query
+        name: sort-by
+        schema:
+          type: string
+        description: Sort by username, wins, losses, wr, kills, deaths, assists, kda, score, rank
+        required: False
+        allowReserved: False
+      - in: query
+        name: order-by
+        schema:
+          type: string
+        description: Order by asc or desc
+        required: False
+        allowReserved: False
+      responses:
+        '200':
+          $ref: '#/components/responses/get_user_stats_response'
+  '/api-rivals/v1/tournaments/tournaments':
+    get:
+      tags:
+      - tournaments
+      operationId: 'get_tournaments'
+      parameters:
+      - in: query
+        name: active
+        schema:
+          type: string
+        description: Filter by active
+        required: False
+        allowReserved: False
+      responses:
+        '200':
+          $ref: '#/components/responses/get_tournaments_response'
+  '/api-rivals/v1/tournaments/tournament-stats/{tournament_id}':
+    get:
+      tags:
+      - tournaments
+      operationId: 'get_tournament_stats'
+      parameters:
+      - in: path
+        name: tournament_id
+        schema:
+          type: integer
+        description: None
+        required: True
+      - in: query
+        name: player-id
+        schema:
+          type: integer
+        description: Filter by player id
+        required: False
+        allowReserved: False
+      - in: query
+        name: sort-by
+        schema:
+          type: string
+        description: Sort by username, wins, losses, score, rank
+        required: False
+        allowReserved: False
+      - in: query
+        name: order-by
+        schema:
+          type: string
+        description: Order by asc or desc
+        required: False
+        allowReserved: False
+      responses:
+        '200':
+          $ref: '#/components/responses/get_tournament_stats_response'
+components:
+  requestBodies:
+    register_request_body:
+      description: None
+      required: True
+      content:
+         application/json:
+             schema:
+                 $ref: '#/components/schemas/register'
+    login_request_body:
+      description: None
+      required: True
+      content:
+         application/json:
+             schema:
+                 $ref: '#/components/schemas/login'
+    update_field_request_body:
+      description: None
+      required: True
+      content:
+         application/json:
+             schema:
+                 $ref: '#/components/schemas/update_field'
+  responses:
+    register_response:
+      description: register response
+      content:
+         application/json:
+             schema:
+                 $ref: '#/components/schemas/register_response_schema'
+    login_response:
+      description: login response
+      content:
+         application/json:
+             schema:
+                 $ref: '#/components/schemas/login_response_schema'
+    get_user_response:
+      description: get_user response
+      content:
+         application/json:
+             schema:
+                 $ref: '#/components/schemas/get_user_response_schema'
+    update_field_response:
+      description: update_field response
+      content:
+         application/json:
+             schema:
+                 $ref: '#/components/schemas/update_field_response_schema'
+    delete_user_response:
+      description: delete_user response
+      content:
+         application/json:
+             schema:
+                 $ref: '#/components/schemas/delete_user_response_schema'
+    test_response:
+      description: test response
+      content:
+         application/json:
+             schema:
+                 $ref: '#/components/schemas/test_response_schema'
+    test_post_response:
+      description: test_post response
+      content:
+         application/json:
+             schema:
+                 $ref: '#/components/schemas/test_post_response_schema'
+    get_user_stats_response:
+      description: get_user_stats response
+      content:
+         application/json:
+             schema:
+                 $ref: '#/components/schemas/get_user_stats_response_schema'
+    get_tournaments_response:
+      description: get_tournaments response
+      content:
+         application/json:
+             schema:
+                 $ref: '#/components/schemas/get_tournaments_response_schema'
+    get_tournament_stats_response:
+      description: get_tournament_stats response
+      content:
+         application/json:
+             schema:
+                 $ref: '#/components/schemas/get_tournament_stats_response_schema'
+  schemas:
+    register_response_schema:
+      type: object
+      properties:
+        id:
+          type: integer  
+          example: 10  
+        username:
+          type: string  
+          example: jutjuan  
+        email:
+          type: string  
+          example: jutjuan@gmail.com  
+        riot_id:
+          type: string  
+          example: jutjuan#EUW  
+        puuid:
+          type: string  
+          example: qHn0uNkpA1T-NqQ0zHTEqNh1BhH5SAsGWwkZsacbeKBqSdkUEaYOcYNjDomm60vMrLWHu4ulYg1C5Q  
+    register:
+      type: object
+      properties:
+        username:
+          type: string  
+          example: jutjuan  
+        email:
+          type: string  
+          example: jutjuan@gmail.com  
+        password:
+          type: string  
+          example: awdf12#AF12df  
+        confPassword:
+          type: string  
+          example: awdf12#AF12df  
+    login_response_schema:
+      type: object
+      properties:
+        id:
+          type: integer  
+          example: 10  
+        username:
+          type: string  
+          example: jutjuan  
+        email:
+          type: string  
+          example: jutjuan@gmail.com  
+        riot_id:
+          type: string  
+          example: jutjuan#EUW  
+        puuid:
+          type: string  
+          example: qHn0uNkpA1T-NqQ0zHTEqNh1BhH5SAsGWwkZsacbeKBqSdkUEaYOcYNjDomm60vMrLWHu4ulYg1C5Q  
+    login:
+      type: object
+      properties:
+        username:
+          type: string  
+          example: jutjuan  
+        password:
+          type: string  
+          example: awdf12#AF12df  
+    get_user_response_schema:
+      type: object
+      properties:
+        id:
+          type: integer  
+          example: 10  
+        username:
+          type: string  
+          example: jutjuan  
+        email:
+          type: string  
+          example: jutjuan@gmail.com  
+        riot_id:
+          type: string  
+          example: jutjuan#EUW  
+        puuid:
+          type: string  
+          example: qHn0uNkpA1T-NqQ0zHTEqNh1BhH5SAsGWwkZsacbeKBqSdkUEaYOcYNjDomm60vMrLWHu4ulYg1C5Q  
+    update_field_response_schema:
+      type: object
+      properties:
+        id:
+          type: integer  
+          example: 10  
+        username:
+          type: string  
+          example: jutjuan  
+        email:
+          type: string  
+          example: jutjuan@gmail.com  
+        riot_id:
+          type: string  
+          example: jutjuan#EUW  
+        puuid:
+          type: string  
+          example: qHn0uNkpA1T-NqQ0zHTEqNh1BhH5SAsGWwkZsacbeKBqSdkUEaYOcYNjDomm60vMrLWHu4ulYg1C5Q  
+    update_field:
+      type: object
+      properties:
+        field:
+          type: string  
+          example: username  
+        value:
+          type: string  
+          example: newName  
+    delete_user_response_schema:
+      type: object
+    test_response_schema:
+      type: object
+    test_post_response_schema:
+      type: object
+    get_user_stats_response_schema:
+      type: object
+      properties:
+        username:
+          type: string  
+          example: dargabi  
+        puuid:
+          type: string  
+          example: qHn0uNkpA1T-NqQ0zHTEqNh1BhH5SAsGWwkZsacbeKBqSdkUEaYOcYNjDomm60vMrLWHu4ulYg1C5Q  
+        user_id:
+          type: integer  
+          example: 1  
+        wins:
+          type: integer  
+          example: 0  
+        losses:
+          type: integer  
+          example: 0  
+        wr:
+          type: number  
+          example: 0.0  
+        kills:
+          type: integer  
+          example: 0  
+        deaths:
+          type: integer  
+          example: 0  
+        assists:
+          type: integer  
+          example: 0  
+        kda:
+          type: number  
+          example: 0.0  
+        score:
+          type: integer  
+          example: 0  
+        rank:
+          type: integer  
+          example: 0  
+        champions_played:
+          type: array  
+          items:
+            type: string
+        role:
+          type: string  
+          example: jungle  
+    get_tournaments_response_schema:
+      type: object
+      properties:
+        id:
+          type: integer  
+          example: 10  
+        start_date:
+          type: string  
+          example: 2020-01-01  
+        end_date:
+          type: string  
+          example: 2020-01-01  
+        name:
+          type: string  
+          example: Torneo de prueba  
+        description:
+          type: string  
+          example: Torneo de prueba  
+        server:
+          type: string  
+          example: EUW  
+        team_size:
+          type: integer  
+          example: 5  
+    get_tournament_stats_response_schema:
+      type: object
+      properties:
+        tournament_id:
+          type: integer  
+          example: 10  
+        wins:
+          type: integer  
+          example: 0  
+        losses:
+          type: integer  
+          example: 0  
+        wr:
+          type: number  
+          example: 0.0  
+        score:
+          type: integer  
+          example: 0  
+        rank:
+          type: integer  
+          example: 0  
+        username:
+          type: string  
+          example: dargabi  
+        puuid:
+          type: string  
+          example: qHn0uNkpA1T-NqQ0zHTEqNh1BhH5SAsGWwkZsacbeKBqSdkUEaYOcYNjDomm60vMrLWHu4ulYg1C5Q  
+        user_id:
+          type: integer  
+          example: 1  
